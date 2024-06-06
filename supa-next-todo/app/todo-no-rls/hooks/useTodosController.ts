@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 type TodoDTO=Database["public"]["Tables"]["todos_no_rls"]["Row"];
 
 export default function useTodosController() {
-    const [loading, setLoading]=useState(false);
+    const [loading, setLoading]=useState(true);
     const [todos, setTodos]=useState<TodoDTO[]>([]);
 
     const onGetTodos= async()=>{
