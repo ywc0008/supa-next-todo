@@ -1,6 +1,6 @@
 "use server";
 
 export const pingAction = async () => {
-  console.log("ping action called");
+  console.log("pingAction income");
   return "pong";
 };
