@@ -1,9 +1,12 @@
+"use client";
+import { pingAction } from "@/actions/ping/ping.action";
 import { getTodoAction } from "@/actions/todo/todo.action";
+import React from "react";
 
-export default function ClientComponentTest() {
+const ClientComponentTest = () => {
   const handleClick = async () => {
     const result = await getTodoAction();
-    console.log("result", result);
+    console.log("handleClick result", result);
   };
 
   return (
@@ -11,4 +14,10 @@ export default function ClientComponentTest() {
       <button onClick={handleClick}>Test server actions</button>
     </div>
   );
-}
+};
+
+export default ClientComponentTest;
+
+// 1. ServerActions + RouterHandler
+// 2. ServerActions + SSR
+// 3. ServerActions + CSR
