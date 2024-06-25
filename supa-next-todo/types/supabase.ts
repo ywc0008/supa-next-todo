@@ -1,12 +1,4 @@
-[?25l[?2004h
-    Select a project:                                                                            
-                                                                                                 
-  >  1. yshnypgshqldsidcerrs [name: next-todo, org: dtpkbaaxzyntiioivfgk, region: ap-northeast-2]
-    2. ylndszogqxkjuqifxpjp [name: wzzblog, org: dtpkbaaxzyntiioivfgk, region: ap-northeast-2]   
-                                                                                                 
-                                                                                                 
-    ↑/k up • ↓/j down • / filter • q quit • ? more                                               
-                                                                                                 [D[2K[A[2K[A[2K[A[2K[A[2K[A[2K[A[2K[A[2K[A[D[2K [D[2K[?2004l[?25h[?1002l[?1003l[?1006lexport type Json =
+export type Json =
   | string
   | number
   | boolean
@@ -40,6 +32,41 @@ export type Database = {
           updated_at?: string | null
         }
         Relationships: []
+      }
+      todos_with_rls: {
+        Row: {
+          content: string | null
+          created_at: string
+          deleted_at: string | null
+          id: number
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          content?: string | null
+          created_at?: string
+          deleted_at?: string | null
+          id?: number
+          updated_at?: string
+          user_id?: string
+        }
+        Update: {
+          content?: string | null
+          created_at?: string
+          deleted_at?: string | null
+          id?: number
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "todos_with_rls_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
       }
     }
     Views: {
