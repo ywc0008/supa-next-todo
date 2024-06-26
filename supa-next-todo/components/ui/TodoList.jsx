@@ -4,6 +4,7 @@ import { IoSearch } from "react-icons/io5";
 import { useCopyToClipboard } from "usehooks-ts";
 import TodoListitem from "./TodoListitem";
 import { useState } from "react";
+import TodoListitemReadonly from "./TodoListitemReadonly";
 
 export default function TodoList({
   sharedUserFullName = "",
@@ -19,10 +20,10 @@ export default function TodoList({
   const [userSearchInput, setUserSearchInput] = useState("");
   const [copiedText, copy] = useCopyToClipboard();
   const handleCopy = () => {
-    const shareLink = `${"todoList 공유할 링크"}/share/${ownerUserId}`;
+    const shareLink = `${process.env.NEXT_PUBLIC_AUTH_REDIRECT_TO_HOME}/share/${ownerUserId}`;
     copy(shareLink)
       .then(() => {
-        console.log(`공유링크 복사완료! \n ${shareLink}`);
+        window.alert(`공유링크 복사완료! \n ${shareLink}`);
       })
       .catch((error) => {
         console.error("Failed to copy!", error);
@@ -80,6 +81,9 @@ export default function TodoList({
         {todoListData?.length >= 1 ? (
           <ul className="flex flex-col gap-6">
             {(todoListData ?? []).map((todo) => {
+              if (isReadOnly) {
+                return <TodoListitemReadonly key={todo?.id} todo={todo} />;
+              }
               return (
                 <TodoListitem
                   key={todo?.id}

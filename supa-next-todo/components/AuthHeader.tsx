@@ -1,18 +1,18 @@
 "use client";
-
 import { createSupabaseBrowserClient } from "@/lib/client/supabase";
 import { User } from "@supabase/supabase-js";
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
+import React from "react";
+import { FcTodoList } from "react-icons/fc";
+import { FcGoogle } from "react-icons/fc";
 import { AiOutlineLogout } from "react-icons/ai";
-import { DiVim } from "react-icons/di";
-import { FcGoogle, FcTodoList } from "react-icons/fc";
 
 interface AuthHeaderProps {
   user?: User | null;
 }
 
-export default function AuthHeader({ user }: AuthHeaderProps) {
-  const isLoggedIn = user?.email;
+const AuthHeader = ({ user }: AuthHeaderProps) => {
+  const isLoggedIn = !!user?.email;
   const supabase = createSupabaseBrowserClient();
   const router = useRouter();
 
@@ -37,18 +37,18 @@ export default function AuthHeader({ user }: AuthHeaderProps) {
   return (
     <header className="h-[50px] bg-white">
       <section className="px-6 h-full">
-        <div className=" h-full flex justify-between items-center">
+        <div className="h-full flex flex-row justify-between items-center">
           <div
             onClick={goToHome}
-            className="flex items-center cursor-pointer gap-2"
+            className="flex flex-row items-center cursor-pointer gap-2"
           >
-            ToDO
-            <FcTodoList size={30} />
+            TODO <FcTodoList size={30} />
           </div>
+
           {isLoggedIn ? (
             <div
               onClick={handleLogout}
-              className="flex items-center cursor-pointer gap-2"
+              className="flex flex-row items-center gap-2 cursor-pointer"
             >
               Logout
               <AiOutlineLogout size={30} />
@@ -56,7 +56,7 @@ export default function AuthHeader({ user }: AuthHeaderProps) {
           ) : (
             <div
               onClick={handleGoogleLogin}
-              className="flex items-center gap-4 cursor-pointer"
+              className="flex flex-row items-center gap-2 cursor-pointer"
             >
               Login
               <FcGoogle size={30} />
@@ -66,4 +66,6 @@ export default function AuthHeader({ user }: AuthHeaderProps) {
       </section>
     </header>
   );
-}
+};
+
+export default AuthHeader;

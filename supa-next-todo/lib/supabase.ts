@@ -1,13 +1,11 @@
-// RouterHandler, RSC, Middleare, ServerActions
-// 위에 3개 중 RSC에서 쿠키를 조작할 수 없다.
-
 import { cookies } from "next/headers";
 import { createServerClient } from "@supabase/ssr";
 import { NextRequest, NextResponse } from "next/server";
-import { setCookie, getCookie } from "cookies-next";
+import { getCookie, setCookie } from "cookies-next";
 import { Database } from "@/types/supabase";
+// RouterHandler, RSC, Middleare, ServerActions
 
-// -ServerActions, RouterHandler
+// - ServerActions, RouterHandler
 export const createServerSideClient = async (serverComponent = false) => {
   const cookieStore = cookies();
 
@@ -29,11 +27,12 @@ export const createServerSideClient = async (serverComponent = false) => {
     }
   );
 };
-// -RSC
+// - RSC
 export const createServerSideClientRSC = async () => {
   return createServerSideClient(true);
 };
-//- Middleware
+
+// - Middleware
 export const createServerSideMiddleware = async (
   req: NextRequest,
   res: NextResponse

@@ -4,10 +4,14 @@ import TodoList from "@/components/ui/TodoList";
 import useTodosController from "../hooks/useTodosController";
 
 interface TodoContainerProps {
+  sharedUserFullName?: string;
   ownerUserId?: string;
 }
 
-export default function TodoContainer({ ownerUserId }: TodoContainerProps) {
+export default function TodoContainer({
+  sharedUserFullName,
+  ownerUserId,
+}: TodoContainerProps) {
   const {
     loading,
     todos,
@@ -20,10 +24,11 @@ export default function TodoContainer({ ownerUserId }: TodoContainerProps) {
   return (
     <div>
       <TodoList
+        sharedUserFullName={sharedUserFullName}
         ownerUserId={ownerUserId}
         loading={loading}
         todoListData={todos}
-        isReadOnly={false}
+        isReadOnly
         onUpdate={onUpdateTodos}
         onCreate={onCreateEmptyTodos}
         onDelete={onDeleteTodos}

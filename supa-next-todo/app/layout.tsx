@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import AuthHeader from "./(site)/components/AuthHeader";
 import { getUser } from "@/actions/auth/user.action";
+import AuthHeader from "@/components/AuthHeader";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +16,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const user = await getUser();
+  const user = await getUser({ serverComponent: true });
   console.log(">>> user:", user);
 
   return (
