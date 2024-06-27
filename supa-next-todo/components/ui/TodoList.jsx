@@ -34,12 +34,12 @@ export default function TodoList({
     setUserSearchInput("");
   };
   return (
-    <section className=" min-h-[70vh] bg-orange-400">
+    <section className=" min-h-[70vh]  bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%">
       <div className=" w-full max-w-[800px] mx-auto">
         <article className=" flex justify-between items-center">
           <div className=" font-bold text-[32px]">
             {sharedUserFullName ?? <div>{sharedUserFullName}</div>}
-            메할일
+            투두리스트
           </div>
           {ownerUserId && (
             <div
@@ -54,24 +54,28 @@ export default function TodoList({
 
         {!isReadOnly && (
           <article className="flex flex-col sm:flex-row gap-4 mt-8">
-            <div className="flex flex-1 h-[60px] ">
-              <input
-                value={userSearchInput}
-                onChange={(e) => setUserSearchInput(e.target.value)}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter") handleSearchEnd();
-                }}
-                className="p-4 flex-1 bg-orange-300 border-black rounded-l-2xl font-bold"
-                type="text"
-              />
-              <div className="w-[60px] flex justify-center items-center bg-black rounded-r-2xl cursor-pointer">
-                <IoSearch onClick={handleSearchEnd} size={40} color="#fff" />
+            <div className=" flex flex-col h-[60px] w-full gap-4">
+              <div className=" w-full">
+                <div
+                  onClick={onCreate}
+                  className="h-[60px]  flex justify-center items-center bg-orange-200 rounded-2xl font-bold cursor-pointer text-[20px]"
+                >
+                  새 투두리스트 만들기
+                </div>
               </div>
-              <div
-                onClick={onCreate}
-                className="h-[60px] w-[60px] flex justify-center items-center bg-orange-200 rounded-2xl font-bold cursor-pointer text-[20px]"
-              >
-                오늘의 메할일
+              <div className="flex flex-1">
+                <input
+                  value={userSearchInput}
+                  onChange={(e) => setUserSearchInput(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") handleSearchEnd();
+                  }}
+                  className="p-4 flex-1 bg-orange-300 border-black rounded-l-2xl font-bold"
+                  type="text"
+                />
+                <div className="w-[60px] flex justify-center items-center bg-black rounded-r-2xl cursor-pointer">
+                  <IoSearch onClick={handleSearchEnd} size={40} color="#fff" />
+                </div>
               </div>
             </div>
           </article>

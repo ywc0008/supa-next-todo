@@ -16,7 +16,7 @@ export default async function Home() {
             <div>
               <DotLoader />
             </div>
-            <div className=" font-bold my-2">Please Login First</div>
+            <div className=" font-bold my-2">로그인 먼저 해주세요</div>
           </div>
         </>
       )}

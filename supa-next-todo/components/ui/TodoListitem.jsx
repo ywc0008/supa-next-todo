@@ -49,24 +49,24 @@ export default function TodoListitem({
         <div className=" w-fit hidden group-hover:flex self-end gap-2">
           {isEdit ? (
             <div
-              className="h-[45px] w-[45px] flex justify-center items-center bg-orange-300 border border-black rounded-2xl cursor-pointer "
+              className="h-[40px] w-[40px] flex justify-center items-center  border border-black rounded-2xl cursor-pointer "
               onClick={onFinishEdit}
             >
-              <CiCircleCheck size={30} />
+              <CiCircleCheck size={20} />
             </div>
           ) : (
             <div
-              className="h-[45px] w-[45px] flex justify-center items-center bg-orange-300 border border-black rounded-2xl cursor-pointer "
+              className="h-[40px] w-[40px] flex justify-center items-center  border border-black rounded-2xl cursor-pointer "
               onClick={onStartEdit}
             >
-              <CiEdit size={30} />
+              <CiEdit size={20} />
             </div>
           )}
           <div
-            className="h-[45px] w-[45px] flex justify-center items-center bg-orange-600 border border-black rounded-2xl cursor-pointer "
+            className="h-[40px] w-[40px] flex justify-center items-center  border border-black rounded-2xl cursor-pointer "
             onClick={onClickDelete}
           >
-            <AiOutlineDelete size={30} />
+            <AiOutlineDelete size={20} />
           </div>
         </div>
       </article>
