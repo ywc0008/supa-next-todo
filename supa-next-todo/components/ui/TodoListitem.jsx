@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { CiCircleCheck } from "react-icons/ci";
 import { CiEdit } from "react-icons/ci";
 import { AiOutlineDelete } from "react-icons/ai";
+import { BsCheckLg } from "react-icons/bs";
 
 export default function TodoListitem({
   todo,
@@ -40,8 +41,14 @@ export default function TodoListitem({
         ) : (
           <div
             onClick={onFinishEdit}
-            className="flex-1 text-[18px] cursor-pointer"
+            className="flex flex-1 text-[18px] cursor-pointer gap-2"
           >
+            <div
+              className="flex justify-center items-center  cursor-pointer "
+              onClick={onClickDelete}
+            >
+              <BsCheckLg size={25} />
+            </div>{" "}
             {todo?.content}
           </div>
         )}
@@ -49,25 +56,19 @@ export default function TodoListitem({
         <div className=" w-fit hidden group-hover:flex self-end gap-2">
           {isEdit ? (
             <div
-              className="h-[40px] w-[40px] flex justify-center items-center  border border-black rounded-2xl cursor-pointer "
+              className="flex justify-center items-center   cursor-pointer "
               onClick={onFinishEdit}
             >
-              <CiCircleCheck size={20} />
+              <CiCircleCheck size={25} />
             </div>
           ) : (
             <div
-              className="h-[40px] w-[40px] flex justify-center items-center  border border-black rounded-2xl cursor-pointer "
+              className="flex justify-center items-center   cursor-pointer "
               onClick={onStartEdit}
             >
-              <CiEdit size={20} />
+              <CiEdit size={25} />
             </div>
           )}
-          <div
-            className="h-[40px] w-[40px] flex justify-center items-center  border border-black rounded-2xl cursor-pointer "
-            onClick={onClickDelete}
-          >
-            <AiOutlineDelete size={20} />
-          </div>
         </div>
       </article>
     </li>

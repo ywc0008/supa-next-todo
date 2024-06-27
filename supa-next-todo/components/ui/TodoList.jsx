@@ -34,26 +34,25 @@ export default function TodoList({
     setUserSearchInput("");
   };
   return (
-    <section className=" min-h-[70vh]  bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%">
-      <div className=" w-full max-w-[800px] mx-auto">
+    <section className=" h-screen bg-gray-500 ">
+      <div className=" w-full max-w-[800px] mx-auto  h-full">
         <article className=" flex justify-between items-center">
           <div className=" font-bold text-[32px]">
             {sharedUserFullName ?? <div>{sharedUserFullName}</div>}
-            투두리스트
+            환영합니다.{} 오늘 할 일은 무엇인가요?
           </div>
           {ownerUserId && (
             <div
               onClick={handleCopy}
               className=" font-bold text-[20px] flex items-center cursor-pointer"
             >
-              Share
               <IoShareSocialOutline />
             </div>
           )}
         </article>
 
         {!isReadOnly && (
-          <article className="flex flex-col sm:flex-row gap-4 mt-8">
+          <article className="flex flex-col gap-4 my-8 h-1/5">
             <div className=" flex flex-col h-[60px] w-full gap-4">
               <div className=" w-full">
                 <div
@@ -66,22 +65,23 @@ export default function TodoList({
               <div className="flex flex-1">
                 <input
                   value={userSearchInput}
+                  placeholder="검색어를 입력해주세요"
                   onChange={(e) => setUserSearchInput(e.target.value)}
                   onKeyDown={(e) => {
                     if (e.key === "Enter") handleSearchEnd();
                   }}
-                  className="p-4 flex-1 bg-orange-300 border-black rounded-l-2xl font-bold"
+                  className="p-4 flex-1 bg-transparent border-b-2 border-b-gray-200 focus:border-b-white focus:outline-none font-bold placeholder:text-white placeholder:opacity-80 placeholder:text-center text-white"
                   type="text"
                 />
-                <div className="w-[60px] flex justify-center items-center bg-black rounded-r-2xl cursor-pointer">
-                  <IoSearch onClick={handleSearchEnd} size={40} color="#fff" />
+
+                <div className=" w-[60px] flex border-b-2 border-b-gray-200 focus:border-b-white justify-center items-center  cursor-pointer">
+                  <IoSearch onClick={handleSearchEnd} size={30} color="#fff" />
                 </div>
               </div>
             </div>
           </article>
         )}
 
-        <div className=" h-[2px] my-10 bg-black"></div>
         {todoListData?.length >= 1 ? (
           <ul className="flex flex-col gap-6">
             {(todoListData ?? []).map((todo) => {
@@ -99,7 +99,7 @@ export default function TodoList({
             })}
           </ul>
         ) : (
-          <div>{loading ? "로딩중..." : "메할일 끝! 재획하쉴?"}</div>
+          <div>{loading ? "로딩중..." : "할일 끝!"}</div>
         )}
       </div>
     </section>
