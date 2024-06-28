@@ -30,9 +30,9 @@ export default function useTodosController(ownerUserId = "") {
     onGetTodos();
   }, [onGetTodos]);
 
-  // 비어있는 todo 생성
-  const onCreateEmptyTodos = async () => {
-    await createTodos("");
+  //  todo 생성
+  const onCreateTodos = async (content: string) => {
+    await createTodos(content);
     await onGetTodos();
   };
   // todo 업데이트
@@ -58,7 +58,7 @@ export default function useTodosController(ownerUserId = "") {
   return {
     loading,
     todos,
-    onCreateEmptyTodos,
+    onCreateTodos,
     onUpdateTodos,
     onSearchTodos,
     onDeleteTodos,

@@ -13,12 +13,14 @@ export default function TodoList({
   todoListData = [],
   isReadOnly = false,
   onUpdate = (id, updatedContent) => {},
-  onCreate = () => {},
+  onCreate = (content) => {},
   onDelete = (id) => {},
   onSearch = (terms) => {},
 }) {
   const [userSearchInput, setUserSearchInput] = useState("");
   const [copiedText, copy] = useCopyToClipboard();
+  const [todoInput, setTodoInput] = useState("");
+
   const handleCopy = () => {
     const shareLink = `${process.env.NEXT_PUBLIC_AUTH_REDIRECT_TO_HOME}/share/${ownerUserId}`;
     copy(shareLink)
@@ -33,13 +35,22 @@ export default function TodoList({
     onSearch(userSearchInput);
     setUserSearchInput("");
   };
+
+  // 엔터버튼으로 투두리스트 생성하기
+  const handleCreate = (event) => {
+    if (event.key === "Enter") {
+      onCreate(todoInput ?? "");
+      setTodoInput("");
+    }
+  };
+
+  console.log(todoInput);
   return (
     <section className=" h-screen">
       <div className=" w-full max-w-[800px] mx-auto  h-full">
         <article className=" flex justify-between items-center">
           <div className="flex w-full justify-center items-center text-center font-bold text-[32px]">
             {sharedUserFullName ?? `환영합니다. ${sharedUserFullName}`}
-            오늘 할 일은 무엇인가요?
           </div>
         </article>
         {ownerUserId && (
@@ -54,17 +65,21 @@ export default function TodoList({
           <article className="flex flex-col gap-4 my-8 h-1/5">
             <div className=" flex flex-col h-[60px] w-full gap-4">
               <div className=" w-full">
-                <div
-                  onClick={onCreate}
-                  className="h-[60px]  flex justify-center items-center bg-orange-200 rounded-2xl font-bold cursor-pointer text-[20px]"
-                >
-                  새 투두리스트 만들기
-                </div>
+                <input
+                  type="text"
+                  value={todoInput}
+                  onChange={(e) => {
+                    setTodoInput(e.target.value);
+                  }}
+                  placeholder="오늘 할 일은 무엇인가요?"
+                  onKeyDown={handleCreate}
+                  className="w-full p-4 flex-1 bg-transparent border-b-2 border-b-gray-200 focus:border-b-white focus:outline-none font-bold placeholder:text-white placeholder:opacity-80 placeholder:text-center text-white"
+                />
               </div>
               <div className="flex flex-1">
                 <input
                   value={userSearchInput}
-                  placeholder="검색어를 입력해주세요"
+                  placeholder="검색할 투두리스트를 입력하세요"
                   onChange={(e) => setUserSearchInput(e.target.value)}
                   onKeyDown={(e) => {
                     if (e.key === "Enter") handleSearchEnd();

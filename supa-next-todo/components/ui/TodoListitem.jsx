@@ -80,7 +80,7 @@ export default function TodoListitem({
                 className="flex justify-center items-center  cursor-pointer "
                 onClick={onClickDelete}
               >
-                <HiOutlineTrash size={25} />
+                <HiOutlineTrash color="red" size={25} />
               </div>
             </div>
           )}

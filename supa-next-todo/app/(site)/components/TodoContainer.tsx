@@ -12,7 +12,7 @@ export default function TodoContainer({ ownerUserId }: TodoContainerProps) {
   const {
     loading,
     todos,
-    onCreateEmptyTodos,
+    onCreateTodos,
     onDeleteTodos,
     onSearchTodos,
     onUpdateTodos,
@@ -46,7 +46,7 @@ export default function TodoContainer({ ownerUserId }: TodoContainerProps) {
         todoListData={todos}
         isReadOnly={false}
         onUpdate={onUpdateTodos}
-        onCreate={onCreateEmptyTodos}
+        onCreate={onCreateTodos}
         onDelete={onDeleteTodos}
         onSearch={onSearchTodos}
       />
