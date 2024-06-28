@@ -12,7 +12,6 @@ const AuthUI = () => {
 
   const getUserInfo = useCallback(async () => {
     const result = await supabase.auth.getUser();
-    console.log(result);
     if (result?.data?.user) setUser(result?.data?.user);
   }, [supabase]);
 

@@ -56,7 +56,6 @@ export async function createTodos(content: string) {
     .from("todos_with_rls")
     .insert({ content })
     .select();
-  console.log("result", result);
 
   return result.data;
 }
@@ -69,7 +68,6 @@ export async function updateTodos(id: number, content: string) {
     .update({ content, updated_at: new Date().toISOString() })
     .eq("id", id)
     .select();
-  console.log("result", result);
 
   return result.data;
 }
