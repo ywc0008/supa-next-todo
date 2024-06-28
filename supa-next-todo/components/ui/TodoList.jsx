@@ -37,20 +37,19 @@ export default function TodoList({
     <section className=" h-screen">
       <div className=" w-full max-w-[800px] mx-auto  h-full">
         <article className=" flex justify-between items-center">
-          <div className=" text-center font-bold text-[32px]">
-            {sharedUserFullName ?? <div>{sharedUserFullName}</div>}
-            환영합니다.{} 오늘 할 일은 무엇인가요?
+          <div className="flex w-full justify-center items-center text-center font-bold text-[32px]">
+            {sharedUserFullName ?? `환영합니다. ${sharedUserFullName}`}
+            오늘 할 일은 무엇인가요?
           </div>
-          {ownerUserId && (
-            <div
-              onClick={handleCopy}
-              className=" font-bold text-[20px] flex items-center cursor-pointer"
-            >
-              <IoShareSocialOutline />
-            </div>
-          )}
         </article>
-
+        {ownerUserId && (
+          <div
+            onClick={handleCopy}
+            className="fixed bottom-0 right-0 m-4 font-bold text-[20px] flex items-center cursor-pointer"
+          >
+            <IoShareSocialOutline size={30} />
+          </div>
+        )}
         {!isReadOnly && (
           <article className="flex flex-col gap-4 my-8 h-1/5">
             <div className=" flex flex-col h-[60px] w-full gap-4">

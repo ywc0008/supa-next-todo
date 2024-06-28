@@ -23,7 +23,7 @@ export default function TodoContainer({ ownerUserId }: TodoContainerProps) {
   useEffect(() => {
     const fetchRandomImage = async () => {
       const response = await fetch(
-        "https://api.unsplash.com/photos/random/?client_id=d1hQPJ3dmqHROEEvBmLy6ZdNYKJIqcpyADOakLg41Jw"
+        "https://api.unsplash.com/photos/random/?client_id=d1hQPJ3dmqHROEEvBmLy6ZdNYKJIqcpyADOakLg41Jw&query=landscape"
       );
       const data = await response.json();
       setBackgroundImage(data.urls.full);
