@@ -33,7 +33,7 @@ export default function TodoListitem({
     }
   };
   return (
-    <li className="min-h-[60px]  font-bold group text-white">
+    <li className="min-h-[60px]  font-bold group text-white transition">
       <article className="min-h-[60px] p-4 flex flex-col sm:flex-row gap-4">
         {isEdit ? (
           <input

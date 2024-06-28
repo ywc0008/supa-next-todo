@@ -44,13 +44,13 @@ export default function TodoList({
     }
   };
 
-  console.log(todoInput);
   return (
     <section className=" h-screen">
       <div className=" w-full max-w-[800px] mx-auto  h-full">
         <article className=" flex justify-between items-center">
           <div className="flex w-full justify-center items-center text-center font-bold text-[32px]">
-            {sharedUserFullName ?? `환영합니다. ${sharedUserFullName}`}
+            {sharedUserFullName ?? ` ${sharedUserFullName}님의 투두리스트`}
+            {sharedUserFullName}님의 투두리스트
           </div>
         </article>
         {ownerUserId && (
