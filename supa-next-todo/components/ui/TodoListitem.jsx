@@ -1,10 +1,9 @@
 "use client";
-import { Input } from "postcss";
 import React, { useState } from "react";
 import { CiCircleCheck } from "react-icons/ci";
-import { CiEdit } from "react-icons/ci";
-import { AiOutlineDelete } from "react-icons/ai";
 import { BsCheckLg } from "react-icons/bs";
+import { HiOutlineTrash } from "react-icons/hi";
+import { MdOutlineEdit } from "react-icons/md";
 
 export default function TodoListitem({
   todo,
@@ -26,16 +25,24 @@ export default function TodoListitem({
   const onClickDelete = () => {
     onDelete(todo.id);
   };
+  // 엔터버튼으로 수정 끝내기
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      onUpdate(todo.id, userInput);
+      setIsEdit(false);
+    }
+  };
   return (
-    <li className="min-h-[60px] bg-orange-100 border-black rounded-2xl font-bold group">
+    <li className="min-h-[60px]  font-bold group text-white">
       <article className="min-h-[60px] p-4 flex flex-col sm:flex-row gap-4">
         {isEdit ? (
           <input
-            className="flex-1 text-[18px]"
+            className="flex-1 text-[18px] bg-transparent focus:bg-transparent focus:outline-none"
             value={userInput}
             onChange={(e) => {
               setUserInput(e.target.value);
             }}
+            onKeyDown={handleKeyPress}
             type="text"
           />
         ) : (
@@ -62,11 +69,19 @@ export default function TodoListitem({
               <CiCircleCheck size={25} />
             </div>
           ) : (
-            <div
-              className="flex justify-center items-center   cursor-pointer "
-              onClick={onStartEdit}
-            >
-              <CiEdit size={25} />
+            <div className="flex gap-3">
+              <div
+                className="flex justify-center items-center   cursor-pointer "
+                onClick={onStartEdit}
+              >
+                <MdOutlineEdit size={25} />
+              </div>
+              <div
+                className="flex justify-center items-center  cursor-pointer "
+                onClick={onClickDelete}
+              >
+                <HiOutlineTrash size={25} />
+              </div>
             </div>
           )}
         </div>

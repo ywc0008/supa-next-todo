@@ -34,10 +34,10 @@ export default function TodoList({
     setUserSearchInput("");
   };
   return (
-    <section className=" h-screen bg-gray-500 ">
+    <section className=" h-screen">
       <div className=" w-full max-w-[800px] mx-auto  h-full">
         <article className=" flex justify-between items-center">
-          <div className=" font-bold text-[32px]">
+          <div className=" text-center font-bold text-[32px]">
             {sharedUserFullName ?? <div>{sharedUserFullName}</div>}
             환영합니다.{} 오늘 할 일은 무엇인가요?
           </div>
