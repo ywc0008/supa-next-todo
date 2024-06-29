@@ -27,7 +27,7 @@ export default function TodoContainer({
   useEffect(() => {
     const fetchRandomImage = async () => {
       const response = await fetch(
-        "https://api.unsplash.com/photos/random/?client_id=d1hQPJ3dmqHROEEvBmLy6ZdNYKJIqcpyADOakLg41Jw&query=landscape"
+        "https://api.unsplash.com/photos/random/?client_id=d1hQPJ3dmqHROEEvBmLy6ZdNYKJIqcpyADOakLg41Jw&query=nightsky"
       );
       const data = await response.json();
       setBackgroundImage(data.urls.full);
@@ -42,6 +42,8 @@ export default function TodoContainer({
         backgroundImage: `url(${backgroundImage})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
+        height: "100vh",
+        width: "100vw",
       }}
     >
       <TodoList
