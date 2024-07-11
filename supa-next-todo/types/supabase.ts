@@ -44,30 +44,6 @@ export type Database = {
           },
         ]
       }
-      todos_no_rls: {
-        Row: {
-          content: string | null
-          created_at: string
-          deleted_at: string | null
-          id: number
-          updated_at: string | null
-        }
-        Insert: {
-          content?: string | null
-          created_at?: string
-          deleted_at?: string | null
-          id?: number
-          updated_at?: string | null
-        }
-        Update: {
-          content?: string | null
-          created_at?: string
-          deleted_at?: string | null
-          id?: number
-          updated_at?: string | null
-        }
-        Relationships: []
-      }
       todos_with_rls: {
         Row: {
           content: string | null
